@@ -1,0 +1,20 @@
+# Ignore specific directories and files
+data/
+notebooks/
+plots/
+LICENSE
+
+# Ignore Python cache and virtual env files
+__pycache__/
+*.pyc
+*.pyo
+venv/
+.venv/
+.env
+*.env
+*.md
+
+# Ignore version control and Docker files
+.git
+.gitignore
+.docker
