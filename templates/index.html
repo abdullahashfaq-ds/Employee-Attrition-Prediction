@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Attrition Prediction</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+
+<body>
+    <h1>Employee Attrition Prediction</h1>
+    <form method="POST" action="/predict">
+
+        <fieldset>
+            <legend>Personal Information</legend>
+            <div class="half-width">
+                <label for="employeeNumber">Employee Number:</label>
+                <input type="number" id="employeeNumber" name="EmployeeNumber" required><br><br>
+            </div>
+            <div class="half-width">
+                <label for="gender">Gender:</label>
+                <select id="gender" name="Gender" required>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                </select><br><br>
+            </div>
+
+            <div class="half-width">
+                <label for="age">Age:</label>
+                <input type="number" id="age" name="Age" min="18" required><br><br>
+            </div>
+            <div class="half-width">
+                <label for="distanceFromHome">Distance From Home (in miles):</label>
+                <input type="number" id="distanceFromHome" name="DistanceFromHome" required><br><br>
+            </div>
+        </fieldset>
+
+        <fieldset>
+            <legend>Job Information</legend>
+            <div class="half-width">
+                <label for="department">Department:</label>
+                <select id="department" name="Department" required>
+                    <option value="Sales">Sales</option>
+                    <option value="Human Resources">Human Resources</option>
+                    <option value="Research and Development">Research and Development</option>
+                </select><br><br>
+            </div>
+
+            <div class="half-width">
+                <label for="jobRole">Job Role:</label>
+                <select id="jobRole" name="JobRole" required>
+                    <option value="Manager">Manager</option>
+                    <option value="Sales Executive">Sales Executive</option>
+                    <option value="Research Scientist">Research Scientist</option>
+                    <option value="Laboratory Technician">Laboratory Technician</option>
+                    <option value="Manufacturing Director">Manufacturing Director</option>
+                    <option value="Healthcare Representative">Healthcare Representative</option>
+                    <option value="Sales Representative">Sales Representative</option>
+                    <option value="Research Director">Research Director</option>
+                    <option value="Human Resources">Human Resources</option>
+                </select><br><br>
+            </div>
+
+            <div class="half-width">
+                <label for="educationField">Education Field:</label>
+                <select id="educationField" name="EducationField" required>
+                    <option value="Life Sciences">Life Sciences</option>
+                    <option value="Medical">Medical</option>
+                    <option value="Marketing">Marketing</option>
+                    <option value="Technical Degree">Technical Degree</option>
+                    <option value="Human Resources">Human Resources</option>
+                    <option value="Others">Other</option>
+                </select><br><br>
+            </div>
+
+            <div class="half-width">
+                <label for="Education">Education (1-5):</label>
+                <input type="number" id="Education" name="Education" min="1" max="5" required><br><br>
+            </div>
+
+            <div class="half-width">
+                <label for="jobLevel">Job Level (1-5):</label>
+                <input type="number" id="jobLevel" name="JobLevel" min="1" max="5" required><br><br>
+            </div>
+        </fieldset>
+
+        <fieldset>
+            <legend>Compensation and Satisfaction</legend>
+            <div class="half-width">
+                <label for="hourlyRate">Hourly Rate:</label>
+                <input type="number" id="hourlyRate" name="HourlyRate" required><br><br>
+            </div>
+
+            <div class="half-width">
+                <label for="monthlyIncome">Monthly Income:</label>
+                <input type="number" id="monthlyIncome" name="MonthlyIncome" required><br><br>
+            </div>
+
+            <div class="half-width">
+
+                <label for="monthlyRate">Monthly Rate:</label>
+                <input type="number" id="monthlyRate" name="MonthlyRate" required><br><br>
+            </div>
+
+            <div class="half-width">
+                <label for="environmentSatisfaction">Environment Satisfaction (1-5):</label>
+                <input type="number" id="environmentSatisfaction" name="EnvironmentSatisfaction" min="1" max="5"
+                    required><br><br>
+            </div>
+
+            <div class="half-width">
+                <label for="jobSatisfaction">Job Satisfaction (1-5):</label>
+                <input type="number" id="jobSatisfaction" name="JobSatisfaction" min="1" max="5" required><br><br>
+            </div>
+        </fieldset>
+
+        <fieldset>
+            <legend>Work and Performance</legend>
+            <div class="half-width">
+                <label for="jobInvolvement">Job Involvement (1-5):</label>
+                <input type="number" id="jobInvolvement" name="JobInvolvement" min="1" max="5" required><br><br>
+            </div>
+            <div class="half-width">
+                <label for="performanceRating">Performance Rating (1-5):</label>
+                <input type="number" id="performanceRating" name="PerformanceRating" min="1" max="5" required><br><br>
+            </div>
+
+            <div class="half-width">
+                <label for="totalWorkingYears">Total Working Years:</label>
+                <input type="number" id="totalWorkingYears" name="TotalWorkingYears" required><br><br>
+            </div>
+
+            <div class="half-width">
+                <label for="yearsAtCompany">Years at Company:</label>
+                <input type="number" id="yearsAtCompany" name="YearsAtCompany" required><br><br>
+            </div>
+
+            <div class="half-width">
+                <label for="yearsInCurrentRole">Years in Current Role:</label>
+                <input type="number" id="yearsInCurrentRole" name="YearsInCurrentRole" required><br><br>
+            </div>
+
+            <div class="half-width">
+                <label for="overTime">Over Time:</label>
+                <select id="overTime" name="OverTime" required>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select><br><br>
+            </div>
+        </fieldset>
+
+        <button type="submit">Submit</button>
+    </form>
+
+    <div id="result-container">
+        <h2 id="result"></h2>
+        <p>This tool estimates the likelihood of employee attrition based on input data and should not be considered a
+            definitive decision.</p>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
+
+</body>
+
+</html>
